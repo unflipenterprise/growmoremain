@@ -9,32 +9,52 @@
       </template>
     </PaneHeader>
     <PaneBody>
-      <q-page-container>
+      <q-page-container class="q-py-md q-pb-lg">
         <!-- <q-item tag="label" class="q-mt-sm" style="background-color:#f4f7f8;">
             <q-item-section >
                 <q-item-label lines="1" class="pc font-regular fs-14" style="color:#00a99d; text-align:center">Saving of $34 on this bill with 10 Unflip Cashback</q-item-label>
             </q-item-section>
         </q-item> -->
-        <q-item tag="label" class="q-mt-md">
+        <q-item class="q-pa-md">
             <q-item-section>
                 <q-item-label caption class="sc font-regular fs-14">Your Order From</q-item-label>
                 <q-item-label lines="1" class="pc font-regular fs-16">Grow More By SN</q-item-label>
             </q-item-section>
         </q-item>
         <q-separator spaced />
-        <q-item tag="label" class="q-mt-sm">
+        <q-item class="q-pa-md" >
             <q-item-section>
                 <q-item-label lines="1" class="pc font-regular fs-16">+91 9032757325</q-item-label>
             </q-item-section>
         </q-item>
         <q-separator spaced />
-        <q-item tag="label" class="q-mt-sm">
-            <q-item-section>
-                <q-item-label caption class="sc font-regular fs-14">You Details For this Order</q-item-label>
-                <q-item-label class="pc font-regular fs-16">Hyderabad - GVK One</q-item-label>
-                <q-item-label style="margin-top:12px !important" class="sc font-regular fs-14"> 3rd Flr Municipal Nos.6-3-251/1 and 6-3-251/5 to 6-3-251/7 Situated at Road No.01 Banjara Hills Hyderabad Telangana </q-item-label>
-            </q-item-section>
+        <!-- <q-item class="q-pa-md">
+          <q-item-section>
+            <q-item-label class="pc font-regular fs-16">Please Select/Add Your Address</q-item-label>
+            <q-item-label caption>Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.</q-item-label>
+          </q-item-section>
+          <q-item-section side top>
+            <q-icon name="place"></q-icon>
+          </q-item-section>
+        </q-item> -->
+        <q-item class="q-pa-md">
+          <q-item-section>
+            <q-item-label class="pc font-regular fs-16">Hyderabad - GVK ONE</q-item-label>
+            <q-item-label class="fs-12 q-pt-sm">Address Goes here with full details of form submitted</q-item-label>
+          </q-item-section>
+          <q-item-section side top>
+            <q-icon name="edit"></q-icon>
+          </q-item-section>
         </q-item>
+        <!-- <q-item>
+          <q-item-section>
+            <q-item-label>Single line item</q-item-label>
+            <q-item-label caption>Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.</q-item-label>
+          </q-item-section>
+          <q-item-section side top>
+            <q-badge color="teal" label="10k" />
+          </q-item-section>
+        </q-item> -->
         <div class="divider"></div>
         <q-item tag="label" class="q-mt-sm">
             <q-item-section>
@@ -75,11 +95,11 @@
             </q-item-section>
         </q-item>
         <q-separator spaced />
-        <q-item tag="label" class=" q-mb-lg cart-item">
+        <q-item tag="label" class=" q-mb-lg q-mt-md cart-item">
             <q-item-section>
                 <q-item-label class="pc font-regular fs-18">To pay</q-item-label>
             </q-item-section>
-            <q-item-section side style="width:135px !important">
+            <q-item-section side style="width:160px !important">
                 <q-item-label caption class="pc font-regular fs-18 row">
                     <span class="fs-14 pc col-auto q-mr-xs" style="text-decoration:line-through" >$600.00 </span>
                     <span class="fs18 col-auto" > $600.00</span>
@@ -90,17 +110,22 @@
     </q-page-container>
     </PaneBody>
     <PaneFooter>
-      <div class="q-pa-md row cart-footer">
-        <div>1 Service | $40.00</div>
-        <q-space />
-        <div>
-          <div class="fit row justify-between items-center content-center">
-            <div class="col-60">View Cart</div>
-            <div class="col">
-              <q-icon right size="1em" name="local_mall" />
-            </div>
-          </div>
-        </div>
+      <!-- <div class="q-pa-md row option-footer">
+        <q-btn class="payment-footer q-pa-md" style="width: 100%">
+                <div class="fit row wrap justify-between items-start content-start font-bold">
+                    <div class="col-6 text-left fs-16	">
+                        Total $230.00
+                    </div>
+                    <div class="col-6 text-right fs-16">
+                        Make Payment
+                    </div>
+                </div>
+        </q-btn>
+      </div> -->
+      <div class="q-pa-md row option-footer">
+        <q-btn to="/selectaddress" class="select-address-footer q-pa-md" style="width: 100%">
+                Select / Add Address
+        </q-btn>
       </div>
     </PaneFooter>
   </Pane>

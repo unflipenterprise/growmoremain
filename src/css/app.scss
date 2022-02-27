@@ -29,15 +29,29 @@ body{
 
 .cart-footer{
     background-color: green;
-    color: white !important;
+    color: #ffffff !important;
     font-weight:bold
 }
 .option-footer{
   background-color: #ffffff;
   border-top: 1px solid rgb(236, 236, 236) ;
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0) !important;
   font-weight:bold
-  border-
+}
+.payment-footer{
+
+  background-color: green;
+  border-top: 1px solid rgb(236, 236, 236) ;
+  color: #ffffff !important;
+  font-weight:bold
+
+}
+
+.select-address-footer{
+  background-color: #111111;
+  border-top: 1px solid rgb(236, 236, 236) ;
+  color: #ffffff !important;
+  font-weight:bold
 }
 
 .pane-header{
@@ -186,8 +200,6 @@ p{
 
   .divider{
     height: 12px;
-    margin-bottom: 8px;
-    margin-top: 8px;
     background-color: #f4f4f5;
   }
 
@@ -298,7 +310,7 @@ p{
   }
 
   #nav a.router-link-exact-active {
-    color: #ffffff;
+    color: #ffffff !important;
   }
   .offcanvas{
       z-index: 90000;
@@ -353,12 +365,12 @@ p{
 
   .option-offcanvas-cart-button{
     background-color: green;
-    color: white !important;
+    color: #ffffff !important;
     padding: 12px;
     text-align: center;
   }
   .option-offcanvas-cart-button > p {
-    color: white;
+    color: #ffffff !important;
     text-transform: uppercase;
     font-size: 16px;
     font-weight: bold;
@@ -680,7 +692,7 @@ p{
   border: 1px solid orange;
 }
 .button-coupon-apply{
-  color: orangered;
+  color: #ff4500;
 }
 
 .q-field__label-login{
@@ -704,7 +716,7 @@ p{
     margin:auto;
     background-color:#181c22;
     text-align:center;
-    color:white;
+    color:#ffffff;
     border-radius: 50px;
 }
 

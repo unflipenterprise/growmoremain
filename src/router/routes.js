@@ -30,19 +30,6 @@ const routes = [
       header: 2
     }
   },
-  // {
-  //   path: '/category/:id',
-  //   name: 'category',
-  //   props: true,
-  //   component: () => import('src/layouts/Layout.vue'),
-  //   children: [
-  //     { path: '', component: () => import('src/pages/CategoryItem.vue') }
-  //   ],
-  //   meta: {
-  //     header: 1
-  //   }
-  // },
-
   {
     path: '/category',
     props: true,
@@ -65,6 +52,29 @@ const routes = [
       header: 2
     }
   },
+  {
+    path: '/selectaddress',
+    props: true,
+    component: () => import('src/layouts/Layout.vue'),
+    children: [
+      { path: '', component: () => import('src/pages/modules/UserAddress/AddressList.vue') }
+    ],
+    meta: {
+      header: 2
+    }
+  },
+   // {
+  //   path: '/category/:id',
+  //   name: 'category',
+  //   props: true,
+  //   component: () => import('src/layouts/Layout.vue'),
+  //   children: [
+  //     { path: '', component: () => import('src/pages/CategoryItem.vue') }
+  //   ],
+  //   meta: {
+  //     header: 1
+  //   }
+  // },
 
   // Always leave this as last one,
   // but you can also remove it
