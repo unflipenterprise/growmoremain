@@ -27,7 +27,7 @@ const routes = [
       { path: '', component: () => import('pages/Cart.vue') }
     ],
     meta: {
-      header: 1
+      header: 2
     }
   },
   // {

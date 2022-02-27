@@ -48,7 +48,7 @@ export default {
         {
           title: "Cart",
           icon: "local_mall",
-          to: "/cart",
+          to: "/",
         },
         {
           title: "Profile",

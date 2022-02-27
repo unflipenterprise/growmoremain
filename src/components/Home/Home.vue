@@ -53,7 +53,7 @@
       </div>
     </PaneBody>
     <PaneFooter>
-      <div class="q-pa-md row cart-footer">
+      <q-item to="/cart" clickable v-ripple flat class="q-pa-md row cart-footer">
         <div>1 Service | $40.00</div>
         <q-space />
         <div>
@@ -64,7 +64,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </q-item>
     </PaneFooter>
   </Pane>
 </template>
