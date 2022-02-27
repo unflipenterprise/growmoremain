@@ -5,7 +5,7 @@
         <q-btn @click="$router.go(-1)" flat round dense icon="arrow_back" class="q-mr-sm" />
       </template>
       <template v-slot:center>
-        <div class="q-toolbar__title ellipsis fs-18 font-bold"> High Speed Internet </div>
+        <div class="q-toolbar__title ellipsis fs-18 font-bold"> High Speed Internet {{categoryId}}</div>
       </template>
     </PaneHeader>
     <PaneBody>
@@ -36,7 +36,7 @@ export default {
       slide: ref(1),
     }
   },
-  props:["id"],
+  props:["categoryId"],
   data(){
     return{
       slider:[
