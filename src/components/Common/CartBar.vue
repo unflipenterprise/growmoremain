@@ -1,6 +1,6 @@
 <template>
-    <q-item to="/cart" clickable v-ripple flat class="q-pa-md row cart-footer">
-        <div>1 Service | $40.00</div>
+    <q-item to="/cart" clickable v-ripple flat class="q-pa-md row cart-footer" v-if="cartItemCount">
+        <div>{{cartTotalQuantity}} Service | ${{cartTotalPrice}}</div>
         <q-space />
         <div>
           <div class="fit row justify-between items-center content-center">
@@ -13,7 +13,12 @@
       </q-item>
 </template>
 <script>
+import {mapGetters} from 'vuex';
 export default {
-
+    computed: {
+        ...mapGetters("tenantDetailsModules", ["cartItemCount"]),
+        ...mapGetters("tenantDetailsModules", ["cartTotalPrice"]),
+        ...mapGetters("tenantDetailsModules", ["cartTotalQuantity"])
+    },
 }
 </script>

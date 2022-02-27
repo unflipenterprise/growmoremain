@@ -1,4 +1,5 @@
 <template>
+  {{tenantDetails}}
   <q-layout view="lHr lpR lFr">
     <q-page-container>
       <router-view />
@@ -24,6 +25,18 @@
 <script>
 import { ref } from 'vue'
 import { createI18n } from 'vue-i18n'
+import { mapState, mapActions,mapGetters} from "vuex";
+
+var navigator_info = window.navigator;
+var screen_info = window.screen;
+var deviceId = navigator_info.mimeTypes.length;
+deviceId += navigator_info.userAgent.replace(/\D+/g, '');
+deviceId += navigator_info.plugins.length;
+deviceId += screen_info.height || '';
+deviceId += screen_info.width || '';
+deviceId += screen_info.pixelDepth || '';
+let guestId = Math.ceil(Math.random()*1000000)
+
 export default {
   name: "Layout",
   setup () {
@@ -58,5 +71,17 @@ export default {
       ],
     };
   },
+  mounted() {
+    this.getTenantInformations();  //use actions info
+    this.getCartItmes();  //use actions info
+    if (!localStorage.getItem("userToken") || !localStorage.getItem("deviceId")){
+      localStorage.setItem('deviceId',deviceId);
+      localStorage.setItem('guestId',guestId);
+    }
+  },
+  methods: {
+    ...mapActions("tenantDetailsModules", ["getTenantInformations"]), //calling methods name
+    ...mapActions("tenantDetailsModules", ["getCartItmes"]),
+  }
 };
 </script>

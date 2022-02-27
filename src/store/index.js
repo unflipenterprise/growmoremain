@@ -11,17 +11,18 @@ import { createStore } from 'vuex'
  * async/await or return a Promise which resolves
  * with the Store instance.
  */
+import tenantDetailsModules from "./module/tenantdetails";
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
-      // example
+      tenantDetailsModules
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
     strict: process.env.DEBUGGING
-  })
+  });
 
   return Store
 })
