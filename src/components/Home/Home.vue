@@ -56,6 +56,7 @@
       <CartBar/>
     </PaneFooter>
   </Pane>
+  <p>AAAA</p>
 </template>
 
 <script>
