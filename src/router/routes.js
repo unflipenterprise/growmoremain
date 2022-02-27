@@ -31,7 +31,8 @@ const routes = [
     }
   },
   {
-    path: '/category',
+    path: '/category/:id',
+    name: 'category',
     props: true,
     component: () => import('src/layouts/Layout.vue'),
     children: [
