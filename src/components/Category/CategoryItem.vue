@@ -23,18 +23,7 @@
       </div>
     </PaneBody>
     <PaneFooter>
-      <div class="q-pa-md row cart-footer">
-        <div>1 Service | $40.00</div>
-        <q-space />
-        <div>
-          <div class="fit row justify-between items-center content-center">
-            <div class="col-60">View Cart</div>
-            <div class="col">
-              <q-icon right size="1em" name="local_mall" />
-            </div>
-          </div>
-        </div>
-      </div>
+        <CartBar/>
     </PaneFooter>
   </Pane>
 </template>
@@ -247,7 +236,8 @@ export default {
     PaneHeader: require("components/~Global/Pane/PaneHeader.vue").default,
     PaneBody: require("components/~Global/Pane/PaneBody.vue").default,
     PaneFooter: require("components/~Global/Pane/PaneFooter.vue").default,
-    ItemCard: require("components/Common/ItemCard.vue").default
+    ItemCard: require("components/Common/ItemCard.vue").default,
+    CartBar: require("components/Common/CartBar.vue").default
   }
 };
 </script>
