@@ -2,9 +2,15 @@
 const routes = [
   {
     path: '/',
-    component: () => import('src/layouts/Layout.vue'),
+    component: () => import('layouts/Layout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '', component: () => import('pages/Index.vue') },
+      {
+        path: 'category/:categoryId',
+        name: 'category',
+        props: true,
+        component: () => import('pages/modules/Categories/CategoryItem.vue')
+      }
     ],
     meta: {
       header: 1
@@ -14,7 +20,7 @@ const routes = [
     path: '/about',
     component: () => import('src/layouts/Layout.vue'),
     children: [
-      { path: '', component: () => import('pages/About.vue') }
+      { path: '', component: () => import('pages/About.vue') },
     ],
     meta: {
       header: 1
@@ -30,18 +36,18 @@ const routes = [
       header: 2
     }
   },
-  {
-    path: '/category/:categoryId',
-    name: 'category',
-    props: true,
-    component: () => import('src/layouts/Layout.vue'),
-    children: [
-      { path: '', component: () => import('src/pages/modules/Categories/CategoryItem.vue') }
-    ],
-    meta: {
-      header: 1
-    }
-  },
+  // {
+  //   path: '/category/:categoryId',
+  //   name: 'category',
+  //   props: true,
+  //   component: () => import('src/layouts/Layout.vue'),
+  //   children: [
+  //     { path: '', component: () => import('') }
+  //   ],
+  //   meta: {
+  //     header: 1
+  //   }
+  // },
   {
     path: '/itemoptions',
     props: true,

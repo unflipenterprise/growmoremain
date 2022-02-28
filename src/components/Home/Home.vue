@@ -15,6 +15,7 @@
     </PaneHeader>
     <PaneBody>
       <div>
+        <q-btn color="purple" @click="showLoading" label="Show Loading" />
         <q-card flat class=" fs-16 font-regular">
           <q-card-section class="q-pa-none" style="border-radius:0px">
             <q-item class="q-px-md">
@@ -60,11 +61,36 @@
 
 <script>
 import { ref } from 'vue';
+import { useQuasar } from 'quasar'
+import { onBeforeUnmount } from 'vue'
 import { mapState,mapGetters} from "vuex";
 export default {
-  setup(){
+  setup () {
+    const $q = useQuasar()
+    let timer
+
+    onBeforeUnmount(() => {
+      if (timer !== void 0) {
+        clearTimeout(timer)
+        $q.loading.hide()
+      }
+    })
+
     return {
       slide: ref(1),
+      showLoading () {
+        $q.loading.show({
+          message: 'Loading Awesomeness. Please wait...',
+          boxClass: 'bg-grey-2 text-grey-9',
+          spinnerColor: 'primary'
+        })
+
+        // hiding in 3s
+        timer = setTimeout(() => {
+          $q.loading.hide()
+          timer = void 0
+        }, 3000)
+      }
     }
   },
   components: {
@@ -82,5 +108,9 @@ export default {
     ...mapGetters("tenantDetailsModules", ["categories"]),
     ...mapGetters("tenantDetailsModules", ["sliders"])
   },
-};
+}
 </script>
+
+
+
+

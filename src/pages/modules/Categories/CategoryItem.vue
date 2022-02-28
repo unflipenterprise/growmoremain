@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center relative-position">
-    <CategoryItem  v-bind:key="props"  v-if:="props" />
+    <CategoryItem/>
   </q-page>
 </template>
 
