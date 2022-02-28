@@ -9,28 +9,12 @@
                 <q-separator />
             </q-item-section>
         </q-item>
-        <q-item exact class="list-padding">
+        <q-item exact class="list-padding" v-for="dataItems in item.item_hightlights" :key="dataItems.id" :item_hightlight="dataItems">
             <q-item-section avatar>
                 <q-icon name="check_circle" style="color:#BDBDBD; font-size:20px" />
             </q-item-section>
             <q-item-section>
-                <p class="fs-15 font-regular">Unlimited Browsing</p>
-            </q-item-section>
-        </q-item>
-        <q-item exact class="list-padding">
-            <q-item-section avatar>
-                <q-icon name="check_circle" style="color:#BDBDBD; font-size:20px" />
-            </q-item-section>
-            <q-item-section>
-                <p class="fs-15 font-regular">Unlimited Downloading</p>
-            </q-item-section>
-        </q-item>
-        <q-item exact class="list-padding">
-            <q-item-section avatar>
-                <q-icon name="check_circle" style="color:#BDBDBD; font-size:20px" />
-            </q-item-section>
-            <q-item-section>
-                <p class="fs-15 font-regular">Powered by Smart fiber tech</p>
+                <p class="fs-15 font-regular">{{dataItems.text}}</p>
             </q-item-section>
         </q-item>
         <div  class="q-px-md q-pt-md" v-if="item.item_type=='options'&&item.stock_status=='in_stock'">

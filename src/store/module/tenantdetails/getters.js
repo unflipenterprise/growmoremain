@@ -27,6 +27,7 @@ export const categories = (state) => {
 
 //get single category by api
 export const singleCategory = (state) => {
+    console.log(state.categorySingleData.categories);
     if (state.categorySingleData.categories) {
         return state.categorySingleData.categories[0];
     }
