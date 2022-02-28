@@ -27,10 +27,12 @@ const routes = [
         },
       },
       {
-        path: "/itemoptions",
+        path: '/category/options/:id',
+        name: "options",
+        props: true,
         component: () => import("pages/modules/Items/ItemOptions.vue"),
         meta: {
-          header: 2,
+          header: 1,
         },
       },
       {

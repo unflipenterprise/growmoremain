@@ -18,7 +18,7 @@
             </q-item-section>
         </q-item>
         <div  class="q-px-md q-pt-md" v-if="item.item_type=='options'&&item.stock_status=='in_stock'">
-            <q-btn color="primary" to="itemoptions" style="width:100%; padding: 12px 24px">
+            <q-btn color="primary" :to="'/category/options/' + item.item_id" style="width:100%; padding: 12px 24px">
                 <div class="fit row wrap justify-between items-start content-start font-bold">
                     <div class="col-6 text-left fs-16	">
                         {{item.button_text}}

@@ -36,7 +36,6 @@ export const singleCategory = (state) => {
 export const categoryItemList = (state) => {
     if (state.categorySingleData.categories) {
         return state.categorySingleData.categories[0].items;
-        return state.categorySingleData.categories[0].items;
     }
 }
 

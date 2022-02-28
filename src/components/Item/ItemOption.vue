@@ -11,9 +11,8 @@
     <PaneBody>
       <div>
         <div class="item-card q-py-md">
-          <q-page-container>
-        <q-item-label header class="pc fs-16 font-regular">Select Term Length* <span class="fs-11 sc">required</span></q-item-label>
-          <ItemOptionCard v-for="n in 4" :key="n"/>
+            <q-page-container v-if="optionsItem">
+             <ItemOptionCard v-for="itemOptions in optionsItem" :key="itemOptions.id" :itemOptions="itemOptions" />
           </q-page-container>
         </div>
       </div>
@@ -37,6 +36,7 @@
 
 <script>
 import { ref } from 'vue'
+import { mapState, mapActions,mapGetters} from "vuex";
 export default {
   setup(){
     return {
@@ -55,6 +55,16 @@ export default {
     PaneBody: require("components/~Global/Pane/PaneBody.vue").default,
     PaneFooter: require("components/~Global/Pane/PaneFooter.vue").default,
     ItemOptionCard: require("components/Common/ItemOptionCard.vue").default
-  }
+  } ,
+    computed: {
+        ...mapState("tenantDetailsModules", ["itemsOptionData"]),
+        ...mapGetters("tenantDetailsModules", ["optionsItem"]),
+    },
+    mounted() {
+        this.getOptionsData(this.id);
+    },
+    methods: {
+        ...mapActions("tenantDetailsModules", ["getOptionsData"]),
+    }
 };
 </script>

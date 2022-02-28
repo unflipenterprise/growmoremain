@@ -18,13 +18,13 @@
         <q-item class="q-pa-md">
             <q-item-section>
                 <q-item-label caption class="sc font-regular fs-14">Your Order From</q-item-label>
-                <q-item-label lines="1" class="pc font-regular fs-16">Grow More By SN</q-item-label>
+                <q-item-label lines="1" class="pc font-regular fs-16">{{(tenantDetails)?tenantDetails.tenant_name:''}}</q-item-label>
             </q-item-section>
         </q-item>
         <q-separator spaced />
         <q-item class="q-pa-md" >
             <q-item-section>
-                <q-item-label lines="1" class="pc font-regular fs-16">+91 9032757325</q-item-label>
+                <q-item-label lines="1" class="pc font-regular fs-16">+{{(tenantDetails)?tenantDetails.phone:''}}</q-item-label>
             </q-item-section>
         </q-item>
         <q-separator spaced />
@@ -62,7 +62,7 @@
             </q-item-section>
         </q-item>
 
-        <SingleCartItem  v-for="n in 4" :key="n"/>
+        <SingleCartItem  v-for="item in cartListing" :key="item.ci_id" :item="item"/>
 
         <div class="divider"></div>
         <q-item tag="label" class="q-mt-sm">
@@ -75,7 +75,7 @@
                 <q-item-label class="pc font-regular fs-16">Sub Total</q-item-label>
             </q-item-section>
             <q-item-section side style="width:125px !important">
-                <q-item-label caption class="pc font-regular fs-15">$600.00</q-item-label>
+                <q-item-label caption class="pc font-regular fs-15">${{cartTotalPrice}}</q-item-label>
             </q-item-section>
         </q-item>
         <q-item tag="label" class="cart-item">
@@ -101,8 +101,8 @@
             </q-item-section>
             <q-item-section side style="width:160px !important">
                 <q-item-label caption class="pc font-regular fs-18 row">
-                    <span class="fs-14 pc col-auto q-mr-xs" style="text-decoration:line-through" >$600.00 </span>
-                    <span class="fs18 col-auto" > $600.00</span>
+                    <span class="fs-14 pc col-auto q-mr-xs" style="text-decoration:line-through" >${{cartTotalPrice}}</span>
+                    <span class="fs18 col-auto" >${{cartTotalPrice}}</span>
                 </q-item-label>
                 <q-item-label style="color:green" class=" fs-14 pc font-regular">You Saved $2000</q-item-label>
             </q-item-section>
@@ -110,18 +110,6 @@
     </q-page-container>
     </PaneBody>
     <PaneFooter>
-      <!-- <div class="q-pa-md row option-footer">
-        <q-btn class="payment-footer q-pa-md" style="width: 100%">
-                <div class="fit row wrap justify-between items-start content-start font-bold">
-                    <div class="col-6 text-left fs-16	">
-                        Total $230.00
-                    </div>
-                    <div class="col-6 text-right fs-16">
-                        Make Payment
-                    </div>
-                </div>
-        </q-btn>
-      </div> -->
       <div class="q-pa-md row option-footer">
         <q-btn to="/selectaddress" class="select-address-footer q-pa-md" style="width: 100%">
                 Select / Add Address
@@ -132,7 +120,9 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import {mapGetters,mapActions} from 'vuex';
+
 export default {
   setup(){
     return {
@@ -151,6 +141,10 @@ export default {
     PaneBody: require("components/~Global/Pane/PaneBody.vue").default,
     PaneFooter: require("components/~Global/Pane/PaneFooter.vue").default,
     SingleCartItem: require("components/Common/SingleCartItem.vue").default
-  }
+  },computed: {
+        ...mapGetters("tenantDetailsModules", ["cartListing"]),
+        ...mapGetters("tenantDetailsModules", ["tenantDetails"]),
+        ...mapGetters("tenantDetailsModules", ["cartTotalPrice"]),
+    },
 };
 </script>

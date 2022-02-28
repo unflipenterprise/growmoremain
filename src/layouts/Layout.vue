@@ -1,7 +1,5 @@
 <template>
-  {{tenantDetails}}
   <q-layout view="lHr lpR lFr">
-
     <q-page-container>
       <router-view />
     </q-page-container>
