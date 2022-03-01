@@ -1,8 +1,18 @@
 <template>
-    Address List Goes Here
+  <q-page class="flex flex-center relative-position">
+    <UserAddress/>
+  </q-page>
 </template>
-<script>
-export default {
 
-}
+<script>
+import { ref } from 'vue'
+
+export default ({
+  name: 'PageIndex',
+
+  components: {
+    'UserAddress' : require('components/UserAddress/UserAddress').default
+  }
+
+})
 </script>

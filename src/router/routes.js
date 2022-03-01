@@ -49,6 +49,13 @@ const routes = [
           header: 2,
         },
       },
+      {
+        path: "/createaddress",
+        component: () => import("pages/modules/UserAddress/CreateAddress.vue"),
+        meta: {
+          header: 2,
+        },
+      },
     ],
   },
   {
