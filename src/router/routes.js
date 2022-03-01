@@ -27,10 +27,19 @@ const routes = [
         },
       },
       {
+<<<<<<< HEAD
         path: "/itemoptions",
         component: () => import("pages/modules/Items/ItemOptions.vue"),
         meta: {
           header: 2,
+=======
+        path: '/category/options/:id',
+        name: "options",
+        props: true,
+        component: () => import("pages/modules/Items/ItemOptions.vue"),
+        meta: {
+          header: 1,
+>>>>>>> cef4554d9571d150f9b54852d446fbf7f09560ea
         },
       },
       {
@@ -50,7 +59,11 @@ const routes = [
     ],
   },
   {
+<<<<<<< HEAD
     path: "/:catchAll(.*)*",
+=======
+    path: "/:catchAll(.)",
+>>>>>>> cef4554d9571d150f9b54852d446fbf7f09560ea
     component: () => import("pages/Error404.vue"),
   },
 ];

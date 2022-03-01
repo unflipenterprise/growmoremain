@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center relative-position">
-    <CategoryItem/>
+    <CategoryItem :categoryId="categoryId"/>
   </q-page>
 </template>
 
