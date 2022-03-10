@@ -3,12 +3,17 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-    <q-footer v-if="$route.meta.header === 1" bordered class="bg-white text-white">
+    <q-footer
+      v-if="$route.meta.header === 1"
+      bordered
+      class="bg-white text-white"
+    >
       <div class="q-gutter-y-md" style="max-width: 600px">
-        <q-tabs v-model="tab" dense class="bg-white-2 text-dark">
+        <q-tabs v-model="tab" indicator-color="transparent" active-color="black" dense class="bg-white-2 text-grey-7">
           <q-route-tab
+
             class="q-py-md"
-            v-for="(nav,index) in navLinks"
+            v-for="(nav, index) in navLinks"
             :key="nav.title"
             exact
             :name="nav.title"

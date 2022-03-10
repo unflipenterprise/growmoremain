@@ -1,6 +1,6 @@
 <template>
-  <Pane>
-    <PaneHeader>
+  <pane>
+    <pane-header>
       <template v-slot:left>
         <q-btn flat round dense icon="grid_view" class="q-mr-sm"></q-btn>
         <q-space/>
@@ -12,10 +12,10 @@
       <template v-slot:right>
         <q-btn flat round dense icon="notifications_none" class="q-mr-sm"></q-btn>
       </template>
-    </PaneHeader>
-    <PaneBody>
+    </pane-header>
+    <pane-body>
       <div>
-        <q-btn color="purple" @click="showLoading" label="Show Loading" />
+        <!-- <q-btn color="purple" @click="showLoading" label="Show Loading" /> -->
         <q-card flat class=" fs-16 font-regular">
           <q-card-section class="q-pa-none" style="border-radius:0px">
             <q-item class="q-px-md">
@@ -45,18 +45,18 @@
           <p class="fs-15 font-regular q-px-md">Get Most Affortable rates & plans with exclusive offers</p>
         </div>
         <div class="row q-pa-sm justify-start  items-start content-start">
-          <CategoryCard v-for="category in categories" :key="category.id" :category="category"/>
+          <category-grid-card v-for="category in categories" :key="category.id" :category="category"/>
         </div>
-        <div style="text-align:center"><q-btn  to="/about" flat text-color="primary" class="category-list-button fs-16 font-bold">All Services</q-btn ></div>
-        <div class="q-pa-md" >
+        <div style="text-align:center"><q-btn  to="/category" flat text-color="primary" class="category-list-button fs-16 font-bold">All Services</q-btn ></div>
+        <div class="q-pa-md q-mt-md">
           <img class="banner_1" :src="servicesImage"  alt="">
         </div>
       </div>
-    </PaneBody>
-    <PaneFooter>
-      <CartBar/>
-    </PaneFooter>
-  </Pane>
+    </pane-body>
+    <pane-footer>
+      <cart-bar/>
+    </pane-footer>
+  </pane>
 </template>
 
 <script>
@@ -65,6 +65,7 @@ import { useQuasar } from 'quasar'
 import { onBeforeUnmount } from 'vue'
 import { mapState,mapGetters} from "vuex";
 export default {
+  name: "HomeComponent",
   setup () {
     const $q = useQuasar()
     let timer
@@ -98,7 +99,7 @@ export default {
     PaneHeader: require("components/~Global/Pane/PaneHeader.vue").default,
     PaneBody: require("components/~Global/Pane/PaneBody.vue").default,
     PaneFooter: require("components/~Global/Pane/PaneFooter.vue").default,
-    CategoryCard: require("components/Common/CategoryCard.vue").default,
+    CategoryGridCard: require("components/Category/CategoryGridCard.vue").default,
     CartBar: require("components/Common/CartBar.vue").default
   },
   computed: {
