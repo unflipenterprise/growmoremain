@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center relative-position">
-    <Home/>
+    <home-component/>
   </q-page>
 </template>
 
@@ -8,10 +8,10 @@
 import { ref } from 'vue'
 
 export default ({
-  name: 'PageIndex',
+  name: 'Home',
 
   components: {
-    'Home' : require('components/Home/Home').default
+    'HomeComponent' : require('components/Home/HomeComponent').default
   }
 
 })

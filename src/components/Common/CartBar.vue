@@ -1,5 +1,6 @@
 <template>
-    <q-item to="/cart" clickable v-ripple flat class="q-pa-md row cart-footer" v-if="cartItemCount">
+    <div>
+      <q-item @click="$refs.auth.open('bottom')" clickable v-ripple flat class="q-pa-md row cart-footer" v-if="cartItemCount">
         <div>{{cartTotalQuantity}} Service | ${{cartTotalPrice}}</div>
         <q-space />
         <div>
@@ -11,10 +12,15 @@
           </div>
         </div>
       </q-item>
+       <auth :model="bottom" ref="auth" />
+    </div>
 </template>
 <script>
 import {mapGetters} from 'vuex';
 export default {
+    components:{
+      'Auth' : require('components/Common/Auth').default
+    },
     computed: {
         ...mapGetters("tenantDetailsModules", ["cartItemCount"]),
         ...mapGetters("tenantDetailsModules", ["cartTotalPrice"]),

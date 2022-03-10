@@ -10,14 +10,15 @@
     </PaneHeader>
     <PaneBody>
       <div>
-        <div class="category-title q-px-md q-py-xl" style="background-color:teal; color:white">
+        <div class="category-title q-px-md q-py-xl" :style="{'background-color':(singleCategory)?singleCategory.category_header_color:''}"  style="color:white">
           <div class="fs-22 font-bold">{{(singleCategory)?singleCategory.category_name:''}}</div>
-          <p class="fs-16 font-regular q-pt-md">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+
+          <p class="fs-16 font-regular q-pt-md">{{(singleCategory)?singleCategory.category_desc:''}}</p>
         </div>
-        <div class="category-banner q-pa-md">
-          <img :src="(singleCategory)?singleCategory.banner_1:'https://via.placeholder.com/400x180'">
+        <div class="category-banner q-px-md q-pt-md">
+          <img :src="(singleCategory)?singleCategory.banner_1:''">
         </div>
-        <div class="item-card q-px-md">
+        <div class="item-card q-px-md q-pt-md">
           <ItemCard v-for="item in categoryItemList" :key="item.id" :item="item"/>
         </div>
       </div>
