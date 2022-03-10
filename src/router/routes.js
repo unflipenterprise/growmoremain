@@ -11,12 +11,30 @@ const routes = [
         },
       },
       {
-        path: "category/:categoryId",
+        path: "/category",
         name: "category",
+        props: true,
+        component: () => import("pages/modules/Categories/Category.vue"),
+        meta: {
+          header: 1,
+        },
+      },
+      {
+        path: "category/:categoryId",
+        name: "categoryItem",
         props: true,
         component: () => import("pages/modules/Categories/CategoryItem.vue"),
         meta: {
           header: 1,
+        },
+      },
+      {
+        path: '/category/options/:id',
+        name: "options",
+        props: true,
+        component: () => import("pages/modules/Items/ItemOptions.vue"),
+        meta: {
+          header: 2,
         },
       },
       {
@@ -27,10 +45,8 @@ const routes = [
         },
       },
       {
-        path: '/category/options/:id',
-        name: "options",
-        props: true,
-        component: () => import("pages/modules/Items/ItemOptions.vue"),
+        path: "/profile",
+        component: () => import("pages/Profile.vue"),
         meta: {
           header: 1,
         },
