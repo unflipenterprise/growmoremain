@@ -1,5 +1,5 @@
 <template>
-  <Pane>
+  <Pane v-if="reloadAuth()">
     <PaneHeader>
       <template v-slot:left>
         <q-btn @click="$router.go(-1)" flat round dense icon="arrow_back" class="q-mr-sm" />
@@ -123,7 +123,7 @@ export default {
   props:["id"],
   data(){
     return{
-
+        userToken:localStorage.getItem("userToken")
     }
   },
   components: {
@@ -137,5 +137,12 @@ export default {
         ...mapGetters("tenantDetailsModules", ["tenantDetails"]),
         ...mapGetters("tenantDetailsModules", ["cartTotalPrice"]),
     },
+    methods: {
+        reloadAuth () {
+            if (localStorage.getItem("userToken")==='' || localStorage.getItem("userToken")!='null'){
+
+            }
+        }
+    }
 };
 </script>
