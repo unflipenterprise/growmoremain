@@ -7,7 +7,10 @@ import masterCartApi from "../../../apis/Cart";
 
 export const getTenantInformations = ({ commit }) => {
     masterTenantApi.all().then(response => {
-        commit('SET_TENANT_BASIC_INFO', response.data);
+        if (response) {
+            localStorage.setItem('currency_code', response.data.tenant_details[0].currency_symbol);
+            commit('SET_TENANT_BASIC_INFO', response.data);
+        }
     })
 };
 

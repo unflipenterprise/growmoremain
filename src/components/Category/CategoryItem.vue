@@ -10,12 +10,12 @@
     </PaneHeader>
     <PaneBody>
       <div>
-        <div class="category-title q-px-md q-py-xl" :style="{'background-color':(singleCategory)?singleCategory.category_header_color:''}"  style="color:white">
+        <div class="category-title q-px-md q-py-xl" :style="{'background-color':(singleCategory)?singleCategory.category_color:''}"  style="">
           <div class="fs-22 font-bold">{{(singleCategory)?singleCategory.category_name:''}}</div>
 
           <p class="fs-16 font-regular q-pt-md">{{(singleCategory)?singleCategory.category_desc:''}}</p>
         </div>
-        <div class="category-banner q-px-md q-pt-md">
+        <div class="category-banner" :class="(singleCategory)?singleCategory.banner_1:'q-px-md q-pt-md'">
           <img :src="(singleCategory)?singleCategory.banner_1:''">
         </div>
         <div class="item-card q-px-md q-pt-md">
