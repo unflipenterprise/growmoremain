@@ -46,6 +46,13 @@ export const optionsItem = (state) => {
     }
 }
 
+//Get Single Options
+export const optionsItemProduct = (state) => {
+    if (state.itemsOptionData.item_details) {
+        return state.itemsOptionData.item_details;
+    }
+}
+
 //Cart Functionality
 export const cartItemCount = (state) => {
     if (state.cart) {
@@ -77,5 +84,11 @@ export const cartListing = (state) => {
         return state.cart;
     }else {
         return '';
+    }
+}
+
+export const getOptionsTotalPrice = (state) => {
+    if (state.summationsOfOptionsValue) {
+        return state.summationsOfOptionsValue;
     }
 }

@@ -12,19 +12,37 @@
       <div>
         <div class="item-card q-py-md">
             <q-page-container v-if="optionsItem">
-             <ItemOptionCard v-for="itemOptions in optionsItem" :key="itemOptions.id" :itemOptions="itemOptions" />
+                <q-item exact class="list-padding" v-for="(itemOptions, index) in optionsItem" :key="itemOptions.id" :itemOptions="itemOptions">
+                    <q-item-label header class="pc fs-16 font-regular">{{itemOptions.option_name}}{{(itemOptions.is_required)?'*':''}}<span class="fs-11 sc">{{(itemOptions.is_required)?'required':''}}</span></q-item-label>
+                    <q-item tag="label" v-ripple v-for="(item, index11) in itemOptions.option_item">
+                        <q-item-section avatar top v-if="itemOptions.option_type=='radio'">
+                            <q-radio v-model="checkedProducts[index]" :val="itemOptions.id+'-'+item.id+'-'+item.option_price"></q-radio>
+                        </q-item-section>
+
+                        <q-item-section avatar top v-if="itemOptions.option_type=='checkbox'">
+                            <q-checkbox  v-model="checkedProducts" :val="itemOptions.id+'-'+item.id+'-'+item.option_price"></q-checkbox >
+                        </q-item-section>
+
+                        <q-item-section>
+                            <q-item-label lines="1" class="pc font-regular fs-16">{{item.option_item_name}}</q-item-label>
+                            <q-item-label class="font-regular fs-14">${{item.option_price}}</q-item-label>
+                            <q-item-label caption class="font-regular discount fs-14">{{item.other_text}}</q-item-label>
+                        </q-item-section>
+                    </q-item>
+                    <q-separator spaced/>
+                </q-item>
           </q-page-container>
         </div>
       </div>
     </PaneBody>
-    <PaneFooter>
+    <PaneFooter >
       <div class="q-pa-md row option-footer">
         <q-btn color="primary q-pa-md" style="width: 100%">
                 <div class="fit row wrap justify-between items-start content-start font-bold">
                     <div class="col-6 text-left fs-16	">
-                        Total $230.00
+                        Total ${{(totalOptionsPrice())?totalOptionsPrice():0}}
                     </div>
-                    <div class="col-6 text-right fs-16">
+                    <div class="col-6 text-right fs-16" @click="addToCart()">
                         Add Item
                     </div>
                 </div>
@@ -44,11 +62,47 @@ export default {
     }
   },
   props:["id"],
-  data(){
-    return{
+    data(){
+        const totalPrice=0;
+        return{
+            checkedProducts:[],
+            totalOptionsPrice(){
+                var item_option_price   =0;
+                var totalItemOptionsPrice=0;
+                var itemstext='';
+                for (let i=0;i<this.checkedProducts.length;i++) {
+                    itemstext=this.checkedProducts[i];
+                    var splitData=itemstext.split("-");
+                    item_option_price  =splitData[2];
+                    totalItemOptionsPrice=Number(totalItemOptionsPrice)+Number(item_option_price);
+                }
+                return totalItemOptionsPrice;
+            },
+            totalSelectedOptionsItem(){
+                var item_option_price   =0;
+                var item_option_id      ='';
+                var cart_item_id        ='';
 
-    }
-  },
+                var itemstext='';
+                var dataList=[];
+
+                for (let i=0;i<this.checkedProducts.length;i++) {
+                    itemstext=this.checkedProducts[i];
+                    var splitData=itemstext.split("-");
+                    cart_item_id       =splitData[0];
+                    item_option_id     =splitData[1];
+                    item_option_price  =splitData[2];
+                    var newdataList={
+                        'cart_item_id':cart_item_id,
+                        'item_option_id':item_option_id,
+                        'selected':'selected',
+                    };
+                    dataList.push(newdataList);
+                }
+                return dataList;
+            }
+        }
+    },
   components: {
     Pane: require("components/~Global/Pane/Pane.vue").default,
     PaneHeader: require("components/~Global/Pane/PaneHeader.vue").default,
@@ -59,12 +113,25 @@ export default {
     computed: {
         ...mapState("tenantDetailsModules", ["itemsOptionData"]),
         ...mapGetters("tenantDetailsModules", ["optionsItem"]),
+        ...mapGetters("tenantDetailsModules", ["optionsItemProduct"]),
     },
     mounted() {
         this.getOptionsData(this.id);
     },
     methods: {
         ...mapActions("tenantDetailsModules", ["getOptionsData"]),
+        ...mapActions("tenantDetailsModules", ["addItemToCart"]),
+        ...mapActions("tenantDetailsModules", ["getCartItmes"]),
+
+        addToCart() {
+            this.addItemToCart({
+                product:this.optionsItemProduct[0],
+                quantity:1,
+                options:this.totalSelectedOptionsItem(),
+            });
+
+            // this.getCartItmes();
+        }
     }
 };
 </script>

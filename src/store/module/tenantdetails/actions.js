@@ -51,13 +51,13 @@ export const addItemToCart = ({ commit, dispatch }, { product, quantity,options 
             device_id:(localStorage.getItem("deviceId"))?localStorage.getItem("deviceId"):'',
             item_id:product.item_id,
             qty:quantity,
-            options:[],
+            options:(options)?options:[],
         });
     }else {
         masterCartApi.store({
             item_id:product.item_id,
             qty:quantity,
-            options:[],
+            options:(options)?options:[],
         });
     }
 }
