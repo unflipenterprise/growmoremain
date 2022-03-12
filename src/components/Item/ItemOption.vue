@@ -5,7 +5,7 @@
         <q-btn @click="$router.go(-1)" flat round dense icon="arrow_back" class="q-mr-sm" />
       </template>
       <template v-slot:center>
-        <div class="q-toolbar__title ellipsis fs-18 font-bold"> Item Name Goes here </div>
+        <div class="q-toolbar__title ellipsis fs-18 font-bold"> {{optionsItemProduct[0].item_name}} </div>
       </template>
     </PaneHeader>
     <PaneBody>
