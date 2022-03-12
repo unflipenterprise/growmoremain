@@ -1,5 +1,5 @@
 <template>
-  <Pane v-if="reloadAuth()">
+  <Pane>
     <PaneHeader>
       <template v-slot:left>
         <q-btn @click="$router.go(-1)" flat round dense icon="arrow_back" class="q-mr-sm" />
@@ -113,17 +113,22 @@
 <script>
 import { ref } from 'vue';
 import {mapGetters,mapActions} from 'vuex';
+import { useRouter } from 'vue-router';
 
 export default {
   setup(){
+      const router = useRouter();
     return {
       slide: ref(1),
+        redirectcart(){
+            router.push({ path: '/' });
+        }
     }
   },
   props:["id"],
   data(){
     return{
-        userToken:localStorage.getItem("userToken")
+        userToken:localStorage.getItem("userToken")||''
     }
   },
   components: {
@@ -139,10 +144,13 @@ export default {
     },
     methods: {
         reloadAuth () {
-            if (localStorage.getItem("userToken")==='' || localStorage.getItem("userToken")!='null'){
-
+            if (!localStorage.getItem("userToken")){
+              this.redirectcart();
             }
         }
-    }
+    },
+    beforeMount(){
+        this.reloadAuth()
+    },
 };
 </script>

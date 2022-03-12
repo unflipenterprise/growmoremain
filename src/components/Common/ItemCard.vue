@@ -72,7 +72,7 @@ export default {
             this.addItemToCart({
                 product: this.item,
                 quantity: 1,
-                options: 1,
+                options: '',
             });
 
             this.getCartItmes();

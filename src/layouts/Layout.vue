@@ -77,8 +77,8 @@ export default {
   },
   mounted() {
     this.getTenantInformations();  //use actions info
-    this.getCartItmes();  //use actions info
-    if (!localStorage.getItem("userToken") || !localStorage.getItem("deviceId")){
+    this.getCartItmes();
+    if (localStorage.getItem("deviceId")==='' && localStorage.getItem("guestId")==='' && !localStorage.getItem("userToken")){
       localStorage.setItem('deviceId',deviceId);
       localStorage.setItem('guestId',guestId);
     }

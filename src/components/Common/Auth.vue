@@ -10,7 +10,7 @@
                     </div>
                 </q-card-section>
                 <q-separator />
-                <q-form  ref="myform" class="q-gutter-md">
+                <q-form  ref="myForm" class="q-gutter-md">
                     <div class="q-px-md q-pt-md">
                         <q-input outlined v-model="name" type="text" class="input-style" label="Your Name" :rules="[ val => val && val.length > 0 || 'Enter your Name']" />
                         <q-input outlined v-model="phone" type="number" hint="Telephone number" class="input-style" label="Enter your Phone Number"  :rules="[ val => val && val.length > 0 || 'Enter your Phone Number']"/>
@@ -75,6 +75,9 @@
 <script>
 
 import { ref } from 'vue'
+import {mapGetters,mapActions} from 'vuex';
+import { useRouter } from 'vue-router';
+import masterUserLoginOtpApi from "../../apis/UserLoginOtp";
 
 export default {
     props: ["model"],
@@ -82,7 +85,9 @@ export default {
     setup (props) {
             const dialog = ref(false)
             const otpdialog = ref(false)
-            const position = ref('bottom');
+            const position = ref('top');
+            const router = useRouter();
+
             return {
                 name: ref(''),
                 phone: ref(''),
@@ -94,7 +99,7 @@ export default {
                 open (pos) {
                     if (!localStorage.getItem("userToken")){
                         position.value = pos,
-                        dialog.value = true
+                            dialog.value = true
                     }else {
                         router.push({ path: '/cart' });
                     }
@@ -106,23 +111,67 @@ export default {
                 },
                 redirectcart(){
                     router.push({ path: '/cart' });
-                },
-
+                }
+            }
+        },
+        data() {
+            return {
+                otpSentphoneNumber:'',
+                otpSentErrorMessage:''
             }
         },
         methods: {
-             onSubmit () {
+            ...mapActions("tenantDetailsModules", ["addUser"]),
+            ...mapActions("tenantDetailsModules", ["VeryfiedUsersByOtp"]),
+            ...mapActions("tenantDetailsModules", ["getCartItmes"]),
+
+            onSubmit () {
                 let vm = this;
                 this.$refs.myForm.validate()
                     .then(success => {
-                       if (this.name!='' && this.phone!=''){
-                          console.log('Hello world');
-                       }
+                        if (this.name!='' && this.phone!=''){
+                            this.addUser({
+                                name: this.name,
+                                phone: this.phone
+                            });
+                            this.otpSentphoneNumber=this.phone;
+                            this.otp('bottom');
+                        }
                     })
                     .catch(err => {
-                        console.log('Success');
+                        alert("Something wrong");
                     })
 
+            },onSubmitOtpCodeForm () {
+                let otpVm = this;
+                otpVm.$refs.myFormOtp.validate()
+                    .then(success => {
+                        if (this.otpCode!=''){
+                            let phone=this.phone;
+                            let phone_otp=this.otpCode;
+
+                            masterUserLoginOtpApi.store({
+                                phone,
+                                phone_otp
+                            }).then(response => {
+                                if (response){
+                                    if (response.data.user){
+                                        localStorage.setItem('userToken', response.data.token);
+                                        localStorage.setItem('growMoreUserId', response.data.user.id);
+                                        localStorage.setItem('growMoreUserName', response.data.user.name);
+                                        this.redirectcart();
+                                    }else {
+                                        this.otpSentErrorMessage='Your opt code is wrong';
+                                    }
+                                }else {
+                                    alert("Something Wrong In api");
+                                }
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        alert("Something wrong");
+                    })
             }
         },
 }
