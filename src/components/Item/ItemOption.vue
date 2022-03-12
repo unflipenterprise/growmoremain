@@ -23,7 +23,7 @@
                         </q-item-section>
                         <q-item-section>
                             <q-item-label lines="1" class="pc font-regular fs-16">{{item.option_item_name}}</q-item-label>
-                            <q-item-label class="font-regular fs-14">${{item.option_price}}</q-item-label>
+                            <q-item-label class="font-regular fs-14">{{currency_symbol}}{{item.option_price}}</q-item-label>
                             <q-item-label caption class="font-regular discount fs-14">{{item.other_text}}</q-item-label>
                         </q-item-section>
                     </q-item>
@@ -38,7 +38,7 @@
         <q-btn color="primary q-pa-md" style="width: 100%">
                 <div class="fit row wrap justify-between items-start content-start font-bold">
                     <div class="col-6 text-left fs-16	">
-                        Total ${{(totalOptionsPrice())?totalOptionsPrice():0}}
+                        Total {{currency_symbol}}{{(totalOptionsPrice())?totalOptionsPrice():0}}
                     </div>
                     <div class="col-6 text-right fs-16" @click="addToCart()">
                         Add Item
@@ -53,13 +53,17 @@
 <script>
 import { ref } from 'vue'
 import { mapState, mapActions,mapGetters} from "vuex";
-
-import routes from '../../router/routes'
+import { useRouter } from 'vue-router';
 
 export default {
   setup(){
+      const router = useRouter();
     return {
       slide: ref(1),
+        currency_symbol:localStorage.getItem("currency_code"),
+        redirectToCategorySingle(categoryId){
+            router.push({ path: '/category/'+categoryId+'' });
+        }
     }
   },
   props:["id"],
@@ -128,14 +132,13 @@ export default {
         ...mapActions("tenantDetailsModules", ["getCartItmes"]),
 
         addToCart() {
-            this.addItemToCart({
-                product:this.optionsItemProduct[0],
-                quantity:1,
-                options:this.totalSelectedOptionsItem(),
-            });
 
-            // this.getCartItmes();
-            routes.push({ path: '/cart' });
+            // this.addItemToCart({
+            //     product:this.optionsItemProduct[0],
+            //     quantity:1,
+            //     options:this.totalSelectedOptionsItem(),
+            // });
+           this.redirectToCategorySingle(this.optionsItemProduct[0].category_id);
         }
     }
 };

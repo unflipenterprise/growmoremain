@@ -4,5 +4,7 @@ export default {
   itemsOptionData: [],
   cart: [],
   notifications: [],
-  userInfo: []
+  userInfo: [],
+  selectedAdressTop:'',
+  selectedAdressBottom:'',
 }

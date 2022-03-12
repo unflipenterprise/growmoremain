@@ -97,3 +97,25 @@ export const VeryfiedUsersByOtp = ({ commit, dispatch }, { phone, phone_otp }) =
         return response;
     });
 }
+
+
+//Address Create
+export const addAddressData = ({ commit, dispatch }, {formData }) => {
+    var selectAddressTop=formData.city+'-'+formData.pincode;
+    var selectedAdressBottom=formData.houseno+','+formData.streetadress+','+formData.town;
+
+    localStorage.setItem('selectedAdressTop',selectAddressTop);
+    localStorage.setItem('selectedAdressBottom',selectedAdressBottom);
+
+
+    let responseData=0;
+    // masterUserApi.store({
+    //     name,
+    //     phone
+    // }).then(response => {
+    //     if (response.status==200){
+    //         responseData=1;
+    //     }
+    // });
+    // return responseData;
+}

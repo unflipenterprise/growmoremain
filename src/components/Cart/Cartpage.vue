@@ -28,7 +28,8 @@
             </q-item-section>
         </q-item>
         <q-separator spaced />
-        <q-item class="q-pa-md">
+
+        <q-item class="q-pa-md" v-if="selectedAdressTop==''">
           <q-item-section>
             <q-item-label class="pc font-regular fs-16">Please Select/Add Your Address</q-item-label>
           </q-item-section>
@@ -36,15 +37,18 @@
             <q-icon name="place"></q-icon>
           </q-item-section>
         </q-item>
-        <!-- <q-item class="q-pa-md">
+
+         <q-item class="q-pa-md" v-if="selectedAdressTop">
           <q-item-section>
-            <q-item-label class="pc font-regular fs-16">Hyderabad - GVK ONE</q-item-label>
-            <q-item-label class="fs-12 q-pt-sm">Address Goes here with full details of form submitted</q-item-label>
+            <q-item-label class="pc font-regular fs-16">{{selectedAdressTop}}</q-item-label>
+            <q-item-label class="fs-12 q-pt-sm">{{selectedAdressBottom}}</q-item-label>
           </q-item-section>
           <q-item-section side top>
-            <q-icon name="edit"></q-icon>
+              <q-btn to="/selectaddress">
+                  <q-icon name="edit"></q-icon>
+              </q-btn>
           </q-item-section>
-        </q-item> -->
+        </q-item>
 
         <div class="divider"></div>
         <q-item tag="label" class="q-mt-sm">
@@ -66,7 +70,7 @@
                 <q-item-label class="pc font-regular fs-16">Sub Total</q-item-label>
             </q-item-section>
             <q-item-section side style="width:125px !important">
-                <q-item-label caption class="pc font-regular fs-15">${{cartTotalPrice}}</q-item-label>
+                <q-item-label caption class="pc font-regular fs-15">{{currency_symbol}}{{cartTotalPrice}}</q-item-label>
             </q-item-section>
         </q-item>
         <q-item tag="label" class="cart-item">
@@ -74,7 +78,7 @@
                 <q-item-label class="pc font-regular fs-16">Sub Charges</q-item-label>
             </q-item-section>
             <q-item-section side style="width:125px !important">
-                <q-item-label caption class="pc font-regular fs-15">$0.00</q-item-label>
+                <q-item-label caption class="pc font-regular fs-15">{{currency_symbol}}0.00</q-item-label>
             </q-item-section>
         </q-item>
         <q-item tag="label" class="cart-item">
@@ -82,7 +86,7 @@
                 <q-item-label class="pc font-regular fs-16">Taxes & Charges</q-item-label>
             </q-item-section>
             <q-item-section side style="width:125px !important">
-                <q-item-label caption class="pc font-regular fs-15">$00.00</q-item-label>
+                <q-item-label caption class="pc font-regular fs-15">{{currency_symbol}}00.00</q-item-label>
             </q-item-section>
         </q-item>
         <q-separator spaced />
@@ -92,16 +96,16 @@
             </q-item-section>
             <q-item-section side style="width:160px !important">
                 <q-item-label caption class="pc font-regular fs-18 row">
-                    <span class="fs-14 pc col-auto q-mr-xs" style="text-decoration:line-through" >${{cartTotalPrice}}</span>
-                    <span class="fs18 col-auto" >${{cartTotalPrice}}</span>
+                    <span class="fs-14 pc col-auto q-mr-xs" style="text-decoration:line-through" >{{currency_symbol}}{{cartTotalPrice}}</span>
+                    <span class="fs18 col-auto" >{{currency_symbol}}{{cartTotalPrice}}</span>
                 </q-item-label>
-                <q-item-label style="color:green" class=" fs-14 pc font-regular">You Saved $2000</q-item-label>
+                <q-item-label style="color:green" class=" fs-14 pc font-regular">You Saved {{currency_symbol}}2000</q-item-label>
             </q-item-section>
         </q-item>
     </q-page-container>
     </PaneBody>
     <PaneFooter>
-      <div class="q-pa-md row option-footer">
+      <div class="q-pa-md row option-footer" v-if="selectedAdressTop==''">
         <q-btn to="/selectaddress" class="select-address-footer q-pa-md" style="width: 100%">
                 Select / Add Address
         </q-btn>
@@ -122,7 +126,10 @@ export default {
       slide: ref(1),
         redirectcart(){
             router.push({ path: '/' });
-        }
+        },
+        currency_symbol:localStorage.getItem("currency_code"),
+        selectedAdressTop :(localStorage.getItem("selectedAdressTop"))?localStorage.getItem("selectedAdressTop"):'',
+        selectedAdressBottom :(localStorage.getItem("selectedAdressBottom"))?localStorage.getItem("selectedAdressBottom"):'',
     }
   },
   props:["id"],
