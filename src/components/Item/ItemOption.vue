@@ -18,11 +18,9 @@
                         <q-item-section avatar top v-if="itemOptions.option_type=='radio'">
                             <q-radio v-model="checkedProducts[index]" :val="itemOptions.id+'-'+item.id+'-'+item.option_price"></q-radio>
                         </q-item-section>
-
                         <q-item-section avatar top v-if="itemOptions.option_type=='checkbox'">
                             <q-checkbox  v-model="checkedProducts" :val="itemOptions.id+'-'+item.id+'-'+item.option_price"></q-checkbox >
                         </q-item-section>
-
                         <q-item-section>
                             <q-item-label lines="1" class="pc font-regular fs-16">{{item.option_item_name}}</q-item-label>
                             <q-item-label class="font-regular fs-14">${{item.option_price}}</q-item-label>
@@ -55,6 +53,9 @@
 <script>
 import { ref } from 'vue'
 import { mapState, mapActions,mapGetters} from "vuex";
+
+import routes from '../../router/routes'
+
 export default {
   setup(){
     return {
@@ -70,11 +71,13 @@ export default {
                 var item_option_price   =0;
                 var totalItemOptionsPrice=0;
                 var itemstext='';
-                for (let i=0;i<this.checkedProducts.length;i++) {
-                    itemstext=this.checkedProducts[i];
-                    var splitData=itemstext.split("-");
-                    item_option_price  =splitData[2];
-                    totalItemOptionsPrice=Number(totalItemOptionsPrice)+Number(item_option_price);
+                if (this.checkedProducts.length>0) {
+                    for (let i = 0; i < this.checkedProducts.length; i++) {
+                        itemstext = this.checkedProducts[i];
+                        var splitData = itemstext.split("-");
+                        item_option_price = splitData[2];
+                        totalItemOptionsPrice = Number(totalItemOptionsPrice) + Number(item_option_price);
+                    }
                 }
                 return totalItemOptionsPrice;
             },
@@ -85,19 +88,20 @@ export default {
 
                 var itemstext='';
                 var dataList=[];
-
-                for (let i=0;i<this.checkedProducts.length;i++) {
-                    itemstext=this.checkedProducts[i];
-                    var splitData=itemstext.split("-");
-                    cart_item_id       =splitData[0];
-                    item_option_id     =splitData[1];
-                    item_option_price  =splitData[2];
-                    var newdataList={
-                        'cart_item_id':cart_item_id,
-                        'item_option_id':item_option_id,
-                        'selected':'selected',
-                    };
-                    dataList.push(newdataList);
+                if (this.checkedProducts.length>0) {
+                    for (let i = 0; i < this.checkedProducts.length; i++) {
+                        itemstext = this.checkedProducts[i];
+                        var splitData = itemstext.split("-");
+                        cart_item_id = splitData[0];
+                        item_option_id = splitData[1];
+                        item_option_price = splitData[2];
+                        var newdataList = {
+                            'cart_item_id': cart_item_id,
+                            'item_option_id': item_option_id,
+                            'selected': 'selected',
+                        };
+                        dataList.push(newdataList);
+                    }
                 }
                 return dataList;
             }
@@ -131,6 +135,7 @@ export default {
             });
 
             // this.getCartItmes();
+            routes.push({ path: '/cart' });
         }
     }
 };
