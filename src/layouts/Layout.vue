@@ -78,7 +78,7 @@ export default {
   mounted() {
     this.getTenantInformations();  //use actions info
     this.getCartItmes();
-    if (localStorage.getItem("deviceId")==='' && localStorage.getItem("guestId")==='' && !localStorage.getItem("userToken")){
+    if (!localStorage.getItem("deviceId") && !localStorage.getItem("guestId") && !localStorage.getItem("userToken")){
       localStorage.setItem('deviceId',deviceId);
       localStorage.setItem('guestId',guestId);
     }

@@ -63,9 +63,18 @@ export const cartItemCount = (state) => {
 }
 
 export const cartTotalPrice = (state) => {
+    console.log("Cart Item ");
+    console.log(state.cart);
+
     let total = 0;
     state.cart.forEach(item => {
-        total += (item.item_sale_price/100) * item.qty;
+        if(item.cart_item_options){
+            item.cart_item_options.forEach(item2 => {
+                total += (item2.option_sale_price/100) * item.qty;
+            });
+        }else{
+            total += (item.item_sale_price/100) * item.qty;
+        }
     });
     return total;
 }

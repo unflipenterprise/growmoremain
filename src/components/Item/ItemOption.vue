@@ -1,10 +1,10 @@
 <template>
   <Pane>
     <PaneHeader>
-      <template v-slot:left>
+      <template>
         <q-btn @click="$router.go(-1)" flat round dense icon="arrow_back" class="q-mr-sm" />
       </template>
-      <template v-slot:center>
+      <template>
         <div class="q-toolbar__title ellipsis fs-18 font-bold"> {{optionsItemProduct[0].item_name}} </div>
       </template>
     </PaneHeader>
@@ -23,7 +23,7 @@
                         </q-item-section>
                         <q-item-section>
                             <q-item-label lines="1" class="pc font-regular fs-16">{{item.option_item_name}}</q-item-label>
-                            <q-item-label class="font-regular fs-14">{{currency_symbol}}{{item.option_price}}</q-item-label>
+                            <q-item-label class="font-regular fs-14">{{currency_symbol}}{{item.option_price/100}}</q-item-label>
                             <q-item-label caption class="font-regular discount fs-14">{{item.other_text}}</q-item-label>
                         </q-item-section>
                     </q-item>
@@ -83,7 +83,7 @@ export default {
                         totalItemOptionsPrice = Number(totalItemOptionsPrice) + Number(item_option_price);
                     }
                 }
-                return totalItemOptionsPrice;
+                return totalItemOptionsPrice/100;
             },
             totalSelectedOptionsItem(){
                 var item_option_price   =0;
@@ -133,12 +133,13 @@ export default {
 
         addToCart() {
 
-            // this.addItemToCart({
-            //     product:this.optionsItemProduct[0],
-            //     quantity:1,
-            //     options:this.totalSelectedOptionsItem(),
-            // });
+            this.addItemToCart({
+                product:this.optionsItemProduct[0],
+                quantity:1,
+                options:this.totalSelectedOptionsItem(),
+            });
            this.redirectToCategorySingle(this.optionsItemProduct[0].category_id);
+            this.getCartItmes();
         }
     }
 };
