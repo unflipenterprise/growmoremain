@@ -72,6 +72,13 @@ const routes = [
           header: 2,
         },
       },
+      {
+        path: "/payment",
+        component: () => import("pages/modules/Payment/PaymentMain.vue"),
+        meta: {
+          header: 2,
+        },
+      },
     ],
   },
   {
