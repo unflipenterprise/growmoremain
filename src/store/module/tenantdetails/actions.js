@@ -119,3 +119,13 @@ export const addAddressData = ({ commit, dispatch }, {formData }) => {
     // });
     // return responseData;
 }
+
+
+export const getUserAddressData = ({ commit }, itemId) => {
+    masterTenantApi.allUserAdresss().then(response => {
+        if (response) {
+            // localStorage.setItem('currency_code', response.data.tenant_details[0].currency_symbol);
+            // commit('SET_TENANT_BASIC_INFO', response.data);
+        }
+    })
+};

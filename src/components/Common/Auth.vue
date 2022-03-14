@@ -120,6 +120,9 @@ export default {
                 otpSentErrorMessage:''
             }
         },
+        computed: {
+            ...mapGetters("tenantDetailsModules", ["cartListing"]),
+        },
         methods: {
             ...mapActions("tenantDetailsModules", ["addUser"]),
             ...mapActions("tenantDetailsModules", ["VeryfiedUsersByOtp"]),
@@ -144,6 +147,7 @@ export default {
 
             },onSubmitOtpCodeForm () {
                 let otpVm = this;
+                let cartItemList=(this.cartListing)?this.cartListing:'';
                 otpVm.$refs.myFormOtp.validate()
                     .then(success => {
                         if (this.otpCode!=''){
@@ -151,8 +155,9 @@ export default {
                             let phone_otp=this.otpCode;
 
                             masterUserLoginOtpApi.store({
-                                phone,
-                                phone_otp
+                                phone:phone,
+                                phone_otp:phone_otp,
+                                cartItemList:cartItemList,
                             }).then(response => {
                                 if (response){
                                     if (response.data.user){

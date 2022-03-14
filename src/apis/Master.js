@@ -9,5 +9,9 @@ export default {
     },
     show(id) {
         return Api.get(`${END_POINT}/${id}`);
-    }
+    },
+    allUserAdresss() {
+        const headers = { "apikey": "3940679693961556", "secretkey": "39406796939615561","apistatus":true};
+        return Api.get(END_POINT,{ headers });
+    },
 }

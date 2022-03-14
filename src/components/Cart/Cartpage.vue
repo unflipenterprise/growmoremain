@@ -31,7 +31,9 @@
 
         <q-item class="q-pa-md" v-if="selectedAdressTop==''">
           <q-item-section>
-            <q-item-label class="pc font-regular fs-16">Please Select/Add Your Address</q-item-label>
+              <q-btn to="/selectaddress" class="pc font-regular fs-16">
+                  Please Select/Add Your Address
+              </q-btn>
           </q-item-section>
           <q-item-section side top>
             <q-icon name="place"></q-icon>

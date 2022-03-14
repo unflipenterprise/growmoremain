@@ -89,5 +89,8 @@ export default {
         ...mapGetters("tenantDetailsModules", ["tenantDetails"]),
         ...mapGetters("tenantDetailsModules", ["cartTotalPrice"]),
     },
+  methods: {
+    ...mapActions("tenantDetailsModules", ["getUserAddressData"]),
+  }
 };
 </script>
