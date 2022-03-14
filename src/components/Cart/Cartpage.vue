@@ -112,6 +112,11 @@
                 Select / Add Address
         </q-btn>
       </div>
+        <div class="q-pa-md row option-footer" v-if="selectedAdressTop">
+            <q-btn to="/payment" class="select-address-footer q-pa-md" style="width: 100%">
+                Pay Now
+            </q-btn>
+        </div>
     </PaneFooter>
   </Pane>
 </template>
