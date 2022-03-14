@@ -1,7 +1,7 @@
 <template>
     <div>
       <q-item @click="$refs.auth.open('bottom')" clickable v-ripple flat class="q-pa-md row cart-footer" v-if="cartItemCount">
-        <div>{{cartTotalQuantity}} Service | ${{cartTotalPrice}}</div>
+        <div>{{cartTotalQuantity}} Service | {{currency_symbol}}{{cartTotalPrice}}</div>
         <q-space />
         <div>
           <div class="fit row justify-between items-center content-center">
@@ -18,6 +18,11 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
+    setup(){
+        return {
+            currency_symbol:localStorage.getItem("currency_code"),
+        }
+    },
     components:{
       'Auth' : require('components/Common/Auth').default
     },
