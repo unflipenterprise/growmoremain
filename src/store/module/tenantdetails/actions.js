@@ -102,30 +102,24 @@ export const VeryfiedUsersByOtp = ({ commit, dispatch }, { phone, phone_otp }) =
 //Address Create
 export const addAddressData = ({ commit, dispatch }, {formData }) => {
     var selectAddressTop=formData.city+'-'+formData.pincode;
-    var selectedAdressBottom=formData.houseno+','+formData.streetadress+','+formData.town;
+    var selectedAdressBottom=formData.house_no+','+formData.street_address+','+formData.locality;
+    let responseData=0;
 
     localStorage.setItem('selectedAdressTop',selectAddressTop);
     localStorage.setItem('selectedAdressBottom',selectedAdressBottom);
 
-
-    let responseData=0;
-    // masterUserApi.store({
-    //     name,
-    //     phone
-    // }).then(response => {
-    //     if (response.status==200){
-    //         responseData=1;
-    //     }
-    // });
-    // return responseData;
+    masterUserApi.storeAddress(formData).then(response => {
+        if (response.data){
+            localStorage.setItem('selectedDefaultAddressID',response.data[0].id);
+        }
+    });
 }
 
 
-export const getUserAddressData = ({ commit }, itemId) => {
-    masterTenantApi.allUserAdresss().then(response => {
+export const getUserAddressList= ({ commit }) => {
+    masterUserApi.allAddress().then(response => {
         if (response) {
-            // localStorage.setItem('currency_code', response.data.tenant_details[0].currency_symbol);
-            // commit('SET_TENANT_BASIC_INFO', response.data);
+            commit('USER_STREET_ADDRESS', response.data);
         }
     })
 };

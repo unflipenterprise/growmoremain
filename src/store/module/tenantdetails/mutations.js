@@ -59,3 +59,7 @@ export const REMOVE_PRODUCT_FROM_CART = (state, product) => {
 export const CLEAR_CART_ITEMS = (state) => {
     state.cart = [];
 };
+
+export const USER_STREET_ADDRESS = (state, userAddressList) => {
+    state.userStreetAdrress = userAddressList;
+};

@@ -7,4 +7,5 @@ export default {
   userInfo: [],
   selectedAdressTop:'',
   selectedAdressBottom:'',
+  userStreetAdrress: [],
 }

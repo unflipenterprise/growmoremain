@@ -9,48 +9,17 @@
       </template>
     </PaneHeader>
     <PaneBody>
-      <q-page-container class="q-py-md q-pb-lg">
+      <q-page-container class="q-py-md q-pb-lg" v-if="getAddresss.length>0">
         <q-item class="q-pa-md">
           <q-item-section>
             <q-item-label class="pc font-regular fs-16">Hyderabad - GVK ONE</q-item-label>
             <q-item-label class="fs-12 q-pt-sm">Address Goes here with full details of form submitted</q-item-label>
           </q-item-section>
-          <!-- <q-item-section side top>
-            <q-icon name="edit"></q-icon>
-          </q-item-section> -->
         </q-item>
-        <q-separator spaced/>
-        <q-item class="q-pa-md">
-          <q-item-section>
-            <q-item-label class="pc font-regular fs-16">Hyderabad - GVK ONE</q-item-label>
-            <q-item-label class="fs-12 q-pt-sm">Address Goes here with full details of form submitted</q-item-label>
-          </q-item-section>
-          <!-- <q-item-section side top>
-            <q-icon name="edit"></q-icon>
-          </q-item-section> -->
-        </q-item>
-        <q-separator spaced/>
-        <q-item class="q-pa-md">
-          <q-item-section>
-            <q-item-label class="pc font-regular fs-16">Hyderabad - GVK ONE</q-item-label>
-            <q-item-label class="fs-12 q-pt-sm">Address Goes here with full details of form submitted</q-item-label>
-          </q-item-section>
-          <!-- <q-item-section side top>
-            <q-icon name="edit"></q-icon>
-          </q-item-section> -->
-        </q-item>
-        <q-separator spaced/>
-        <q-item class="q-pa-md">
-          <q-item-section>
-            <q-item-label class="pc font-regular fs-16">Hyderabad - GVK ONE</q-item-label>
-            <q-item-label class="fs-12 q-pt-sm">Address Goes here with full details of form submitted</q-item-label>
-          </q-item-section>
-          <!-- <q-item-section side top>
-            <q-icon name="edit"></q-icon>
-          </q-item-section> -->
-        </q-item>
-
     </q-page-container>
+      <q-page-container class="q-py-md q-pb-lg" v-if="getAddresss.length<=0">
+        <q-item-label class="pc font-regular fs-16">No Address Found Add New</q-item-label>
+      </q-page-container>
     </PaneBody>
     <PaneFooter>
       <div class="q-pa-md row option-footer">
@@ -84,13 +53,17 @@ export default {
     PaneBody: require("components/~Global/Pane/PaneBody.vue").default,
     PaneFooter: require("components/~Global/Pane/PaneFooter.vue").default,
     SingleCartItem: require("components/Common/SingleCartItem.vue").default
+  },
+  mounted() {
+    this.getUserAddressList();  //use actions info
   },computed: {
+        ...mapGetters("tenantDetailsModules", ["getAddresss"]),
         ...mapGetters("tenantDetailsModules", ["cartListing"]),
         ...mapGetters("tenantDetailsModules", ["tenantDetails"]),
         ...mapGetters("tenantDetailsModules", ["cartTotalPrice"]),
     },
   methods: {
-    ...mapActions("tenantDetailsModules", ["getUserAddressData"]),
+    ...mapActions("tenantDetailsModules", ["getUserAddressList"]),
   }
 };
 </script>

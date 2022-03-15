@@ -100,3 +100,8 @@ export const getOptionsTotalPrice = (state) => {
         return state.summationsOfOptionsValue;
     }
 }
+
+
+export const getAddresss = (state) => {
+   return state.userStreetAdrress;
+}
