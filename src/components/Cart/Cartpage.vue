@@ -24,7 +24,7 @@
         <q-separator spaced />
         <q-item class="q-pa-md" >
             <q-item-section>
-                <q-item-label lines="1" class="pc font-regular fs-16">+{{(tenantDetails)?tenantDetails.phone:''}}</q-item-label>
+                <q-item-label lines="1" class="pc font-regular fs-16">+{{(userPhoneNumber)?userPhoneNumber:''}}</q-item-label>
             </q-item-section>
         </q-item>
         <q-separator spaced />
@@ -135,6 +135,7 @@ export default {
             router.push({ path: '/' });
         },
         currency_symbol:localStorage.getItem("currency_code"),
+        userPhoneNumber :localStorage.getItem("gorwMoreUserPhone"),
         selectedAdressTop :(localStorage.getItem("selectedAdressTop"))?localStorage.getItem("selectedAdressTop"):'',
         selectedAdressBottom :(localStorage.getItem("selectedAdressBottom"))?localStorage.getItem("selectedAdressBottom"):'',
     }

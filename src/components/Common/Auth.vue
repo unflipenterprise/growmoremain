@@ -164,6 +164,7 @@ export default {
                                         localStorage.setItem('userToken', response.data.token);
                                         localStorage.setItem('growMoreUserId', response.data.user.id);
                                         localStorage.setItem('growMoreUserName', response.data.user.name);
+                                        localStorage.setItem('gorwMoreUserPhone', phone);
                                         this.redirectcart();
                                     }else {
                                         this.otpSentErrorMessage='Your opt code is wrong';
