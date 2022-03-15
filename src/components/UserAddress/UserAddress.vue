@@ -10,10 +10,10 @@
     </PaneHeader>
     <PaneBody>
       <q-page-container class="q-py-md q-pb-lg" v-if="getAddresss.length>0">
-        <q-item class="q-pa-md">
-          <q-item-section>
-            <q-item-label class="pc font-regular fs-16">Hyderabad - GVK ONE</q-item-label>
-            <q-item-label class="fs-12 q-pt-sm">Address Goes here with full details of form submitted</q-item-label>
+        <q-item class="q-pa-md" v-for="(getAddresssItem, index) in getAddresss" :key="getAddresssItem.id" :getAddresssItem="getAddresssItem">
+          <q-item-section  @click="selectedAddress(getAddresssItem.city,getAddresssItem.pincode,getAddresssItem.house_no,getAddresssItem.street_address,getAddresssItem.locality,getAddresssItem.id)">
+            <q-item-label class="pc font-regular fs-16">{{getAddresssItem.city}} - {{getAddresssItem.pincode}}</q-item-label>
+            <q-item-label class="fs-12 q-pt-sm">{{getAddresssItem.house_no+','+getAddresssItem.street_address+','+getAddresssItem.locality}}</q-item-label>
           </q-item-section>
         </q-item>
     </q-page-container>
@@ -34,11 +34,15 @@
 <script>
 import { ref } from 'vue';
 import {mapGetters,mapActions} from 'vuex';
-
+import { useRouter } from 'vue-router';
 export default {
   setup(){
+    const router = useRouter();
     return {
       slide: ref(1),
+      redirectCart(){
+        router.push({ path: '/cart' });
+      }
     }
   },
   props:["id"],
@@ -64,6 +68,15 @@ export default {
     },
   methods: {
     ...mapActions("tenantDetailsModules", ["getUserAddressList"]),
+
+    selectedAddress(city,pincode,house_no,street_address,locality,ID) {
+      var selectAddressTop=city+'-'+pincode;
+      var selectedAdressBottom=house_no+','+street_address+','+locality;
+      localStorage.setItem('selectedDefaultAddressID',ID);
+      localStorage.setItem('selectedAdressTop',selectAddressTop);
+      localStorage.setItem('selectedAdressBottom',selectedAdressBottom);
+      this.redirectCart();
+    }
   }
 };
 </script>
