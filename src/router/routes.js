@@ -38,6 +38,15 @@ const routes = [
         },
       },
       {
+        path: '/category/cartoptions/:id',
+        name: "cartoptions",
+        props: true,
+        component: () => import("pages/modules/Items/CartItemOptions.vue"),
+        meta: {
+          header: 2,
+        },
+      },
+      {
         path: "/about",
         component: () => import("pages/About.vue"),
         meta: {
