@@ -118,6 +118,11 @@ export default {
                 },
                 redirectcart(){
                     router.push({ path: '/cart' });
+                },
+                redirectMainPage(){
+                    router.push({ path: '/' });
+                    dialog.value = false;
+                    otpdialog.value = false;
                 }
             }
         },
@@ -154,7 +159,7 @@ export default {
 
             },onSubmitOtpCodeForm () {
                 let otpVm = this;
-                let cartItemList=(this.cartListing)?this.cartListing:'';
+                let cartItemList=(this.cartListing)?this.cartListing:[];
                 otpVm.$refs.myFormOtp.validate()
                     .then(success => {
                         if (this.otpCode!=''){
@@ -172,7 +177,11 @@ export default {
                                         localStorage.setItem('growMoreUserId', response.data.user.id);
                                         localStorage.setItem('growMoreUserName', response.data.user.name);
                                         localStorage.setItem('gorwMoreUserPhone', phone);
-                                        this.redirectcart();
+                                        if (cartItemList.length>0){
+                                            this.redirectcart();
+                                        }else{
+                                           this.redirectMainPage();
+                                        }
                                     }else {
                                         this.otpSentErrorMessage='Your opt code is wrong';
                                     }

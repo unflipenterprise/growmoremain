@@ -49,8 +49,7 @@ export default {
         clearTimeout(timer)
         $q.loading.hide()
       }
-    })
-
+    });
     return {
       tab: ref('Home'),
       showLoading () {
@@ -106,6 +105,7 @@ export default {
   },
   beforeMount(){
     this.showLoading()
+    this.getCartItmes();
   },
 };
 </script>
