@@ -126,3 +126,8 @@ export const getUserAddressList= ({ commit }) => {
     })
 };
 
+export const getCartOptionsData = ({ commit }, itemId) => {
+    masterItemOptionsApi.showCartOption(itemId).then(response => {
+      commit('SET_OPTIONS_INFO', response.data);
+    })
+};

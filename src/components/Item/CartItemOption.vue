@@ -62,7 +62,7 @@ export default {
       slide: ref(1),
         currency_symbol:localStorage.getItem("currency_code"),
         redirectToCategorySingle(categoryId){
-            router.push({ path: '/category/'+categoryId+'' });
+            router.push({ path: '/cart' });
         }
     }
   },
@@ -119,20 +119,18 @@ export default {
     ItemOptionCard: require("components/Common/ItemOptionCard.vue").default
   } ,
     computed: {
-        ...mapState("tenantDetailsModules", ["itemsOptionData"]),
         ...mapGetters("tenantDetailsModules", ["optionsItem"]),
         ...mapGetters("tenantDetailsModules", ["optionsItemProduct"]),
     },
     mounted() {
-        this.getOptionsData(this.id);
+        this.getCartOptionsData(this.id);
     },
     methods: {
-        ...mapActions("tenantDetailsModules", ["getOptionsData"]),
+        ...mapActions("tenantDetailsModules", ["getCartOptionsData"]),
         ...mapActions("tenantDetailsModules", ["addItemToCart"]),
         ...mapActions("tenantDetailsModules", ["getCartItmes"]),
 
         addToCart() {
-
             this.addItemToCart({
                 product:this.optionsItemProduct[0],
                 quantity:1,
