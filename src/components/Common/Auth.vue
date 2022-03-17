@@ -103,6 +103,13 @@ export default {
                     }else {
                         router.push({ path: '/cart' });
                     }
+                }, openProfile (pos) {
+                    if (!localStorage.getItem("userToken")){
+                        position.value = pos,
+                        dialog.value = true
+                    }else {
+                        router.push({ path: '/profile' });
+                    }
                 },
                 otp (pos) {
                     position.value = pos;

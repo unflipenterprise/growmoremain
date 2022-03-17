@@ -10,20 +10,15 @@
     >
       <div class="q-gutter-y-md" style="max-width: 600px">
         <q-tabs v-model="tab" indicator-color="transparent" active-color="black" dense class="bg-white-2 text-grey-7">
-          <q-route-tab
-
-            class="q-py-md"
-            v-for="(nav, index) in navLinks"
-            :key="nav.title"
-            exact
-            :name="nav.title"
-            :label="nav.title"
-            :to="nav.to"
-          />
+          <q-route-tab class="q-py-md" exact name="Home" label="Home" to="/"/>
+          <q-route-tab class="q-py-md" exact name="About" label="About" to="/about"/>
+          <q-route-tab class="q-py-md" exact name="Cart" label="Cart" to="/cart"/>
+          <q-route-tab class="q-py-md" exact name="Profile" label="Profile" @click="$refs.auth.openProfile('bottom')" />
         </q-tabs>
       </div>
     </q-footer>
   </q-layout>
+  <auth :model="bottom" ref="auth" />
 </template>
 
 <script>
@@ -41,14 +36,36 @@ deviceId += screen_info.width || '';
 deviceId += screen_info.pixelDepth || '';
 let guestId = Math.ceil(Math.random()*1000000)
 
+import { useQuasar } from 'quasar'
+import { onBeforeUnmount } from 'vue'
+
 export default {
   name: "Layout",
   setup () {
+    const $q = useQuasar()
+    let timer
+    onBeforeUnmount(() => {
+      if (timer !== void 0) {
+        clearTimeout(timer)
+        $q.loading.hide()
+      }
+    })
+
     return {
-      tab: ref('Home')
+      tab: ref('Home'),
+      showLoading () {
+        $q.loading.show()
+        // hiding in 2s
+        timer = setTimeout(() => {
+          $q.loading.hide()
+          timer = void 0
+        }, 2000)
+      }
     }
   },
-
+  components:{
+    'Auth' : require('components/Common/Auth').default
+  },
   data() {
     return {
       navLinks: [
@@ -86,6 +103,9 @@ export default {
   methods: {
     ...mapActions("tenantDetailsModules", ["getTenantInformations"]), //calling methods name
     ...mapActions("tenantDetailsModules", ["getCartItmes"]),
-  }
+  },
+  beforeMount(){
+    this.showLoading()
+  },
 };
 </script>
