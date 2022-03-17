@@ -63,3 +63,7 @@ export const CLEAR_CART_ITEMS = (state) => {
 export const USER_STREET_ADDRESS = (state, userAddressList) => {
     state.userStreetAdrress = userAddressList;
 };
+
+export const USER_TRANSACTIONS = (state, paymentTransactions) => {
+    state.transactions = paymentTransactions;
+};

@@ -88,6 +88,13 @@ const routes = [
           header: 2,
         },
       },
+      {
+        path: "/paymentsuccess",
+        component: () => import("pages/modules/Payment/PaymentSuccess.vue"),
+        meta: {
+          header: 2,
+        },
+      },
     ],
   },
   {

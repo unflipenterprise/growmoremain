@@ -30,5 +30,5 @@ export default {
             headers = {"apikey": "3940679693961556", "secretkey": "39406796939615561","apistatus":true,"Accept":'application/json',"Authorization":'Bearer '+localStorage.getItem("userToken")};
         }
         return Api.post(END_POINT_POST_ADDRESS, data,{headers});
-    },
+    }
 }

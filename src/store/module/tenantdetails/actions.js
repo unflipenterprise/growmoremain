@@ -4,6 +4,8 @@ import masterItemOptionsApi from "../../../apis/ItemOptions";
 import masterUserApi from "../../../apis/Users";
 import masterUserLoginOtpApi from "../../../apis/UserLoginOtp";
 import masterCartApi from "../../../apis/Cart";
+import masterOrderApi from "../../../apis/Orders";
+import {LocalStorage} from "quasar";
 
 export const getTenantInformations = ({ commit }) => {
     masterTenantApi.all().then(response => {
@@ -123,3 +125,4 @@ export const getUserAddressList= ({ commit }) => {
         }
     })
 };
+
