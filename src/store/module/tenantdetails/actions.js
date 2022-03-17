@@ -131,3 +131,9 @@ export const getCartOptionsData = ({ commit }, itemId) => {
       commit('SET_OPTIONS_INFO', response.data);
     })
 };
+
+export const getOrderHistory = ({ commit }, itemId) => {
+    masterItemOptionsApi.getOrderHistory(itemId).then(response => {
+      commit('SET_USER_ORDER', response.data.order_list);
+    })
+};

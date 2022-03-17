@@ -105,3 +105,10 @@ export const getOptionsTotalPrice = (state) => {
 export const getAddresss = (state) => {
    return state.userStreetAdrress;
 }
+
+//Get Single Options
+export const userOrderList = (state) => {
+    if (state.orderList) {
+        return state.orderList;
+    }
+}

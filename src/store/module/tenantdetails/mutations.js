@@ -67,3 +67,7 @@ export const USER_STREET_ADDRESS = (state, userAddressList) => {
 export const USER_TRANSACTIONS = (state, paymentTransactions) => {
     state.transactions = paymentTransactions;
 };
+
+export const SET_USER_ORDER = (state, orderData) => {
+    state.orderList = orderData;
+}
