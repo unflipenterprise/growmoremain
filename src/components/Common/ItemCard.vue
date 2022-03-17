@@ -5,7 +5,7 @@
                 <h6 class="font-bold fs-20 q-ma-none q-pb-xs pc">{{item.item_name}}</h6>
                 <p class="fs-15 font-regular sc">{{item.item_desc}}</p>
                 <p class="fs-11 font-regular q-pt-md">AS LOW AS</p>
-                <div class="fs-20 font-regular pc q-mt-none q-mb-sm"><span class="fs-14 font-regular PC q-mt-xs">{{currency_symbol}}</span>{{(item.item_sale_price/100)}} <span class="fs-14 font-regular PC q-mt-xs">/ Per Month</span></div>
+                <div class="fs-20 font-regular pc q-mt-none q-mb-sm"><span class="fs-14 font-regular PC q-mt-xs">{{currency_symbol}}</span>{{(item.lowest_amount/100)}} <span class="fs-14 font-regular PC q-mt-xs">/ Per Month</span></div>
                 <q-separator />
             </q-item-section>
         </q-item>
