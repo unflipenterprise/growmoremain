@@ -9,6 +9,6 @@ export default {
         return Api.get(END_POINT,{ headers });
     },
     show(id) {
-        return Api.get(`${END_POINT}/${id}`,{ headers });
+        return Api.get(`${END_POINT}/${id}?order_type=delivery`,{ headers });
     }
 }

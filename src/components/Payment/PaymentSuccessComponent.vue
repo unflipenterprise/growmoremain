@@ -11,7 +11,7 @@
     <p>Transaction ID :{{transactionsId}}</p>
 
     <div class="q-pa-md row">
-      <q-btn to="/" class="select-address-footer q-pa-md" style="width: 100%">
+      <q-btn  class="select-address-footer q-pa-md" style="width: 100%" @click="homePageCall()">
         Back To Home
       </q-btn>
     </div>
@@ -20,12 +20,17 @@
 </template>
 
 <script>
+  import { useRouter } from 'vue-router';
   export default {
     setup(){
+      const router = useRouter();
       return {
         currency_symbol :localStorage.getItem("currency_code"),
         paymentAmount   :localStorage.getItem("TranscationAmount"),
         transactionsId  :localStorage.getItem("TranscationId"),
+        redirectcart(){
+          router.push({ path: '/' });
+        },
       }
     },
     components: {
@@ -38,8 +43,20 @@
 
     },
     methods:{
-
-    }
+      ...mapActions("tenantDetailsModules", ["getCartItmes"]),
+      reloadAuth () {
+        if (!localStorage.getItem("userToken")){
+          this.redirectcart();
+        }
+      },
+      homePageCall(){
+        this.redirectcart();
+        this.getCartItmes();
+      }
+    },
+    beforeMount(){
+      this.reloadAuth()
+    },
   }
 </script>
 

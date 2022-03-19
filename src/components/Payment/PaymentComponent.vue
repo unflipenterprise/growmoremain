@@ -42,6 +42,9 @@
         redirectSuccess(){
           router.push({ path: '/paymentsuccess' });
         },
+        redirectcart(){
+          router.push({ path: '/' });
+        },
       }
     },
     components: {
@@ -129,8 +132,16 @@
             this.redirectSuccess();
           }
         });
+      },
+      reloadAuth () {
+        if (!localStorage.getItem("userToken")){
+          this.redirectcart();
+        }
       }
-    }
+    },
+    beforeMount(){
+      this.reloadAuth()
+    },
   }
 </script>
 
