@@ -21,6 +21,7 @@
 
 <script>
   import { useRouter } from 'vue-router';
+  import { mapState, mapActions,mapGetters} from "vuex";
   export default {
     setup(){
       const router = useRouter();

@@ -102,7 +102,7 @@
                 if (response2){
                   localStorage.setItem('TranscationId',response.razorpay_payment_id);
                   localStorage.setItem('TranscationAmount',paidAmount);
-                  window.location.href = "http://localhost:8080/paymentsuccess"
+                  window.location.href = "https://www.growmorebysn.com/paymentsuccess"
                 }
               });
             }
