@@ -138,8 +138,8 @@ export default {
                 quantity:1,
                 options:this.totalSelectedOptionsItem(),
             });
-           this.redirectToCategorySingle(this.optionsItemProduct[0].category_id);
             this.getCartItmes();
+           this.redirectToCategorySingle(this.optionsItemProduct[0].category_id);
         }
     }
 };

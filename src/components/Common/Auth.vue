@@ -28,7 +28,7 @@
             </q-card>
         </q-dialog>
         <!--OTP DIALOG-->
-        <q-dialog v-model="otpdialog" persistent :position="position">
+        <q-dialog v-model="otpdialog" persistent :position="position" style="z-index: 10000000">
             <q-card>
                 <!-- <q-linear-progress indeterminate color="primary" style="position:absolute; top:0px" /> -->
                 <q-card-section class="row items-center q-pb-md">
@@ -56,7 +56,7 @@
                 </div>
             </q-card>
         </q-dialog>
-        <q-dialog v-model="secondDialog" persistent transition-show="scale" transition-hide="scale">
+        <q-dialog v-model="secondDialog" persistent transition-show="scale" transition-hide="scale" style="z-index: 10000001">
             <q-card>
                 <q-card-section class="row items-center">
                     <div class="text-h6">Alert</div>
