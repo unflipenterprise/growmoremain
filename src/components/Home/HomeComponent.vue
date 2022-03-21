@@ -35,7 +35,9 @@
                 height="180px"
                 infinite
               >
-              <q-carousel-slide v-for="(slide, index) in sliders" :name="slide.id" :img-src="slide.promotion_image" />
+                <a :href="slide.link"  v-for="(slide, index) in sliders" :name="slide.id"  target="_blank" >
+                     <q-carousel-slide  :img-src="slide.promotion_image"/>
+                </a>
               </q-carousel>
             </div>
           </q-card-section>
@@ -109,6 +111,19 @@ export default {
     ...mapGetters("tenantDetailsModules", ["categories"]),
     ...mapGetters("tenantDetailsModules", ["sliders"])
   },
+  methods:{
+    openUrl(link) {
+      if (this.external) {
+        return "///" + link.name;
+      } else {
+        let links = this.$router.resolve({
+          name: link.name,
+          params: link.params ,
+        });
+        return links.route;
+      }
+    }
+  }
 }
 </script>
 
